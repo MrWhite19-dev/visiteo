@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#075d4c">
+  <meta name="description" content="Visiteo — trouvez votre logement en Côte d’Ivoire. Studios, appartements, villas et résidences à vendre ou à louer.">
+  <title>Visiteo — Visitez chez vous</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="#accueil" aria-label="Visiteo, accueil" data-page-link="accueil">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 64 64"><path d="M10 30 32 10 54 30v23H10Z"/><circle cx="32" cy="35" r="8"/><circle class="brand-dot" cx="32" cy="35" r="3.4"/></svg>
+        </span>
+        <span class="brand-copy"><strong>Visiteo</strong><small>Visitez chez vous.</small></span>
+      </a>
+
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mainNav">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="main-nav" id="mainNav" aria-label="Navigation principale">
+        <a href="#accueil" class="nav-link active" data-page-link="accueil">Immobilier</a>
+        <a href="#comment-ca-marche" class="nav-link" data-scroll-link="comment-ca-marche">Comment ça marche</a>
+        <a href="#dons" class="nav-link" data-page-link="dons">Faire un don</a>
+        <a href="#publier" class="nav-link nav-cta" data-scroll-link="publier">Publier une annonce</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page active" id="page-accueil" data-page="accueil">
+      <section class="hero">
+        <div class="container hero-grid">
+          <div class="hero-content">
+            <span class="eyebrow"><span class="eyebrow-dot"></span> L’immobilier en Côte d’Ivoire</span>
+            <h1>Trouvez un lieu qui vous <span>ressemble.</span></h1>
+            <p>Studios, appartements, résidences et villas à louer ou à vendre. Découvrez votre prochain chez-vous avec Visiteo.</p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#annonces" data-scroll-link="annonces">Explorer les logements <span aria-hidden="true">↗</span></a>
+              <a class="btn btn-ghost" href="#publier" data-scroll-link="publier">Publier mon bien</a>
+            </div>
+            <div class="hero-trust"><span class="trust-icon">✓</span> Des annonces claires, une recherche simple</div>
+          </div>
+          <div class="hero-visual">
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85" alt="Villa contemporaine entourée de verdure">
+            <div class="floating-card">
+              <span class="floating-icon">⌂</span>
+              <span><strong>Votre prochain chez-vous</strong><small>Commencez votre recherche</small></span>
+            </div>
+            <div class="visual-label"><span class="label-dot"></span> Votre projet commence ici</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="search-section" id="annonces">
+        <div class="container">
+          <div class="search-panel">
+            <div class="search-heading"><div><span class="eyebrow">Recherche rapide</span><h2>Quel logement cherchez-vous ?</h2></div><span class="search-count" id="resultCount">4 biens de démonstration</span></div>
+            <form id="searchForm" class="search-grid">
+              <label class="field"><span>Mot-clé</span><input id="keyword" type="search" placeholder="Ex. studio, Cocody, villa…"></label>
+              <label class="field"><span>Type de bien</span><select id="typeFilter"><option value="tous">Tous les types</option><option>Studio</option><option>Appartement</option><option>Villa</option><option>Résidence</option></select></label>
+              <label class="field"><span>Ville</span><select id="cityFilter"><option value="toutes">Toutes les villes</option><option>Abidjan</option><option>Yamoussoukro</option><option>Bouaké</option><option>Grand-Bassam</option></select></label>
+              <label class="field"><span>Budget maximum</span><select id="budgetFilter"><option value="tous">Tous les budgets</option><option value="100000">100 000 FCFA</option><option value="200000">200 000 FCFA</option><option value="500000">500 000 FCFA</option></select></label>
+              <button class="btn btn-primary search-button" type="submit">Rechercher <span aria-hidden="true">⌕</span></button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <section class="section listings-section">
+        <div class="container">
+          <div class="section-heading">
+            <div><span class="eyebrow">Sélection Visiteo</span><h2>Des logements à découvrir</h2><p>Exemples de présentation — les annonces sont fictives pour le moment.</p></div>
+            <div class="listing-tabs" role="group" aria-label="Filtrer par transaction">
+              <button class="tab active" type="button" data-deal="Tous">Tous</button>
+              <button class="tab" type="button" data-deal="Location">Location</button>
+              <button class="tab" type="button" data-deal="Vente">Vente</button>
+            </div>
+          </div>
+          <div class="property-grid" id="propertyGrid" aria-live="polite"></div>
+          <div class="empty-state hidden" id="emptyState"><span>⌕</span><h3>Aucun logement trouvé</h3><p>Essayez de modifier vos filtres.</p><button class="btn btn-outline" id="resetFilters" type="button">Réinitialiser les filtres</button></div>
+        </div>
+      </section>
+
+      <section class="how-section" id="comment-ca-marche">
+        <div class="container">
+          <div class="section-heading centered"><div><span class="eyebrow">Simple et pratique</span><h2>Comment fonctionne Visiteo ?</h2><p>Un parcours clair pour trouver ou proposer un logement.</p></div></div>
+          <div class="steps-grid">
+            <article class="step-card"><span class="step-number">01</span><div class="step-icon">⌕</div><h3>Recherchez</h3><p>Filtrez les annonces selon votre ville, votre budget et le type de logement.</p></article>
+            <article class="step-card"><span class="step-number">02</span><div class="step-icon">⌂</div><h3>Échangez</h3><p>Consultez les détails du bien et demandez à être mis en contact avec l’annonceur.</p></article>
+            <article class="step-card"><span class="step-number">03</span><div class="step-icon">✓</div><h3>Concrétisez</h3><p>Confirmez les conditions de location ou de vente avant toute transaction.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="publish-section" id="publier">
+        <div class="container publish-box">
+          <div><span class="eyebrow light-eyebrow">Propriétaires & agences</span><h2>Votre bien mérite d’être vu.</h2><p>Préparez votre annonce et rejoignez la communauté Visiteo.</p></div>
+          <button class="btn btn-light" type="button" id="publishButton">Préparer une annonce <span aria-hidden="true">↗</span></button>
+        </div>
+      </section>
+    </section>
+
+    <section class="page donation-page" id="page-dons" data-page="dons">
+      <div class="donation-hero">
+        <div class="container donation-hero-grid">
+          <div><span class="eyebrow"><span class="eyebrow-dot"></span> Construisons ensemble</span><h1>Aidez Visiteo à <span>grandir.</span></h1><p>Votre soutien contribue à améliorer la plateforme et à rendre la recherche immobilière plus simple.</p></div>
+          <div class="donation-art"><span class="art-house">⌂</span><span class="art-spark">✦</span><span class="art-circle"></span></div>
+        </div>
+      </div>
+      <section class="section">
+        <div class="container donation-layout">
+          <div class="donation-copy"><span class="eyebrow">Pourquoi contribuer ?</span><h2>Chaque geste compte.</h2><p>Les dons volontaires pourront aider à financer l’hébergement du site, l’amélioration des services et la vérification des annonces.</p><div class="donation-benefit"><span>✓</span><div><strong>Une plateforme plus utile</strong><p>Des outils plus pratiques pour les propriétaires et les chercheurs de logement.</p></div></div><div class="donation-benefit"><span>✓</span><div><strong>Plus de confiance</strong><p>Des efforts continus pour mieux encadrer les annonces publiées.</p></div></div><div class="notice"><strong>Transparence :</strong> les dons sont volontaires et distincts des commissions sur les transactions immobilières.</div></div>
+          <form class="donation-card" id="donationForm">
+            <span class="eyebrow">Soutenir la plateforme</span><h2>Choisissez votre montant</h2><p>Contribution en francs CFA (FCFA).</p>
+            <div class="amount-grid"><button type="button" class="amount-option" data-amount="500">500 F</button><button type="button" class="amount-option selected" data-amount="1000">1 000 F</button><button type="button" class="amount-option" data-amount="2000">2 000 F</button><button type="button" class="amount-option" data-amount="5000">5 000 F</button></div>
+            <label class="field"><span>Autre montant (FCFA)</span><input id="customAmount" type="number" min="100" step="50" placeholder="Montant libre (facultatif)"></label>
+            <div class="donation-total"><span>Votre don</span><strong id="donationTotal">1 000 FCFA</strong></div>
+            <button class="btn btn-primary btn-full" type="submit">Continuer avec Wave <span aria-hidden="true">↗</span></button>
+            <p class="form-note">Démo uniquement : aucun paiement n’est effectué. Wave sera activé après configuration officielle.</p>
+            <div class="form-message" id="donationMessage" role="status" aria-live="polite"></div>
+          </form>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-main">
+      <a class="brand footer-brand" href="#accueil" data-page-link="accueil"><span class="brand-mark"><svg viewBox="0 0 64 64"><path d="M10 30 32 10 54 30v23H10Z"/><circle cx="32" cy="35" r="8"/><circle class="brand-dot" cx="32" cy="35" r="3.4"/></svg></span><span class="brand-copy"><strong>Visiteo</strong><small>Visitez chez vous.</small></span></a>
+      <p>Une nouvelle façon de trouver votre logement en Côte d’Ivoire.</p>
+      <div class="footer-links"><a href="#accueil" data-page-link="accueil">Immobilier</a><a href="#dons" data-page-link="dons">Faire un don</a><a href="#comment-ca-marche" data-scroll-link="comment-ca-marche">Comment ça marche</a></div>
+    </div>
+    <div class="container footer-bottom"><span>© <span id="year"></span> Visiteo. Tous droits réservés.</span><span>Maquette de démonstration — annonces et paiements non actifs.</span></div>
+  </footer>
+
+  <dialog class="modal" id="propertyModal">
+    <button class="modal-close" type="button" id="modalClose" aria-label="Fermer">×</button>
+    <div id="modalContent"></div>
+  </dialog>
+  <dialog class="modal" id="publishModal">
+    <button class="modal-close" type="button" id="publishModalClose" aria-label="Fermer">×</button>
+    <span class="eyebrow">Publier sur Visiteo</span><h2>Préparez votre annonce</h2>
+    <p>Cette maquette ne publie pas encore d’annonces. Remplissez les champs pour voir les informations nécessaires à préparer.</p>
+    <form id="listingForm" class="modal-form">
+      <label class="field"><span>Nom du bien</span><input required id="listingTitle" placeholder="Ex. Studio lumineux à Cocody"></label>
+      <div class="form-two"><label class="field"><span>Transaction</span><select id="listingDeal"><option>Location</option><option>Vente</option></select></label><label class="field"><span>Type de bien</span><select id="listingType"><option>Studio</option><option>Appartement</option><option>Villa</option><option>Résidence</option></select></label></div>
+      <div class="form-two"><label class="field"><span>Ville</span><input required id="listingCity" placeholder="Abidjan"></label><label class="field"><span>Prix (FCFA)</span><input required id="listingPrice" type="number" min="1" placeholder="75000"></label></div>
+      <label class="field"><span>Contact (téléphone)</span><input required id="listingPhone" type="tel" placeholder="+225 …"></label>
+      <button class="btn btn-primary btn-full" type="submit">Vérifier mon annonce</button><div class="form-message" id="listingMessage" role="status"></div>
+    </form>
+  </dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
